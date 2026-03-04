@@ -1,7 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AAER – Sustainable Road Cargo</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#050D47;--navy2:#0F1A61;--gold:#F2C726;--green:#33C759;--orange:#FF991A;
+  --red:#F24040;--cyan:#06B6D4;--purple:#A855F7;--blue:#3B82F6;--text:#E8EEFF;--muted:#8A96C8;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--text);font-family:'Work Sans',sans-serif;overflow-x:hidden}
+
+/* CURSOR FOLLOWER */
+.cursor-follower{position:fixed;pointer-events:none;z-index:9999;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity .25s;left:0;top:0;transform:translate(18px,18px)}
+.cursor-follower.visible{opacity:1}
+.cursor-follower-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
+.cursor-follower-text{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;white-space:nowrap;background:rgba(5,13,71,.8);border:1px solid rgba(255,255,255,.15);padding:6px 13px;border-radius:100px;backdrop-filter:blur(8px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:21px 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(5,13,71,0.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.08);overflow:visible}
+.logo{display:flex;align-items:center;text-decoration:none;height:41px;overflow:visible}
+.logo svg{height:166px;width:auto;display:block;flex-shrink:0}
+.nav-links{display:flex;gap:37px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{display:flex;align-items:center;gap:9px;background:#fff;color:var(--navy);padding:10px 25px;border-radius:6px;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s}
+.nav-cta:hover{background:var(--gold);color:var(--navy)}
+.nav-cta-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 5% 80px}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#020820 0%,#050D47 50%,#0a1560 100%);z-index:0}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;z-index:0}
+.hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(242,199,38,.07) 0%,transparent 70%);z-index:0}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:860px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);padding:7px 16px;border-radius:100px;font-size:12px;color:#fff;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:28px}
+.hero-badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1{font-family:'Montserrat',sans-serif;font-size:clamp(38px,6vw,72px);font-weight:800;line-height:1.08;letter-spacing:-1px;margin-bottom:24px;color:#fff}
+.hero-title-line1{position:relative;display:inline-block}
+.hero-title-line1::after{content:'';position:absolute;bottom:-4px;left:0;height:2px;background:linear-gradient(90deg,var(--green) 0%,rgba(51,199,89,0) 100%);box-shadow:0 0 8px rgba(51,199,89,.4);width:0}
+.hero-title-line1.charged::after{animation:charge 2.2s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes charge{0%{width:0}100%{width:100%}}
+h1 .accent{color:var(--gold);position:relative;display:inline-block;transition:text-shadow .3s;animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:1}50%{opacity:.82}}
+h1 .accent::before{content:'';position:absolute;inset:-8px -20px;background:radial-gradient(ellipse,rgba(5,15,80,.7) 0%,transparent 70%);border-radius:50%;opacity:0;transition:opacity .3s;pointer-events:none;z-index:-1}
+h1 .accent:hover{text-shadow:0 0 40px rgba(5,15,80,.9),0 0 90px rgba(3,10,60,.6)}
+h1 .accent:hover::before{opacity:1}
+.hero-sub{font-size:clamp(15px,2vw,19px);color:var(--muted);max-width:600px;margin:0 auto 44px;line-height:1.7}
+.btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-primary-white{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;font-weight:700;font-size:14px;letter-spacing:.5px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn-primary-white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,255,255,.15)}
+.btn-outline{border:1px solid rgba(255,255,255,.2);color:#fff;padding:14px 32px;border-radius:8px;font-weight:500;font-size:14px;text-decoration:none;transition:border-color .2s,background .2s}
+.btn-outline:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05)}
+
+/* STATS BAR */
+.stats-bar{background:var(--navy2);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:32px 5%;display:flex;justify-content:center;gap:clamp(24px,5vw,80px);flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;color:#fff;line-height:1}
+.stat-num.gold{color:var(--gold)}
+.stat-label{font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.5px}
+
+/* SECTIONS */
+section{padding:96px 5%}
+.section-label{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 h2{font-family:'Montserrat',sans-serif;font-size:clamp(28px,4vw,46px);font-weight:800;line-height:1.15;margin-bottom:20px;color:#fff}
 .body-text{color:var(--muted);line-height:1.8;font-size:15px}
 .body-text strong{color:var(--text)}
 strong{color:var(--text)}
+
 
 /* VISION */
 .vision{background:linear-gradient(180deg,var(--navy) 0%,rgba(15,26,97,.4) 100%)}
