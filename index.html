@@ -73,7 +73,6 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(28px,4vw,46px);font-weigh
 .body-text strong{color:var(--text)}
 strong{color:var(--text)}
 
-
 /* VISION */
 .vision{background:linear-gradient(180deg,var(--navy) 0%,rgba(15,26,97,.4) 100%)}
 .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1200px;margin:0 auto}
@@ -164,6 +163,7 @@ strong{color:var(--text)}
   .bento-grid{grid-template-columns:1fr 1fr}
   .card-wide{grid-column:span 2}
   nav .nav-links{display:none}
+  .cursor-follower{display:none}
 }
 @media(max-width:600px){
   .bento-grid{grid-template-columns:1fr}
@@ -175,6 +175,12 @@ strong{color:var(--text)}
 </head>
 <body>
 
+<!-- CURSOR FOLLOWER -->
+<div class="cursor-follower" id="cursorFollower">
+  <div class="cursor-follower-dot"></div>
+  <span class="cursor-follower-text">Scroll to explore</span>
+</div>
+
 <!-- NAV -->
 <nav>
   <a href="index.html" class="logo">
@@ -182,8 +188,7 @@ strong{color:var(--text)}
       <g transform="matrix(1,0,0,1,-700.692,-781.75)">
         <g transform="matrix(1.23495,0,0,1.23495,-401.112,-155.713)">
           <g transform="matrix(1,0,0,1,44.3296,-37.3431)">
-            <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" d="M3813.5,4386.6c230.4,0,417.4-187,417.4-417.5c0-230.4-187-417.4-417.4-417.4h-917.4v-86.9h917.4
-              c278.4,0,504.4,226,504.4,504.4c0,270.8-213.9,492-481.7,503.9l570.9,530.7h-127.7L3709,4473.5v-86.9H3813.5z"/>
+            <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" d="M3813.5,4386.6c230.4,0,417.4-187,417.4-417.5c0-230.4-187-417.4-417.4-417.4h-917.4v-86.9h917.4c278.4,0,504.4,226,504.4,504.4c0,270.8-213.9,492-481.7,503.9l570.9,530.7h-127.7L3709,4473.5v-86.9H3813.5z"/>
           </g>
           <g transform="matrix(1.20099,0,0,1,-391.881,-37.3431)">
             <rect fill="#4AB5CE" fill-rule="evenodd" clip-rule="evenodd" x="2946.5" y="4386.6" width="319.4" height="86.9"/>
@@ -192,12 +197,10 @@ strong{color:var(--text)}
             <rect fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" x="2839.5" y="4926.9" width="851.5" height="86.9"/>
           </g>
           <g transform="matrix(1,0,0,1,-13.329,5.75143)">
-            <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" d="M2163.1,4430.4l-266.8,530.2l-96.9-1.4l774-1537.6l380.4,747.9l-97.1,0.9c0,0-180.9-355.8-282.9-556.2
-              l-367,729.2h251.4v86.9H2163.1z"/>
+            <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" d="M2163.1,4430.4l-266.8,530.2l-96.9-1.4l774-1537.6l380.4,747.9l-97.1,0.9c0,0-180.9-355.8-282.9-556.2l-367,729.2h251.4v86.9H2163.1z"/>
           </g>
           <g transform="matrix(1,0,0,1,-441.732,5.75143)">
-            <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" d="M1697.6,4430.4l-266.8,530.2l-96.9-1.4l774-1537.6l380.4,747.9l-97.1,0.9c0,0-180.9-355.8-282.9-556.2
-              l-367,729.2h251.4v86.9H1697.6z"/>
+            <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" d="M1697.6,4430.4l-266.8,530.2l-96.9-1.4l774-1537.6l380.4,747.9l-97.1,0.9c0,0-180.9-355.8-282.9-556.2l-367,729.2h251.4v86.9H1697.6z"/>
           </g>
         </g>
       </g>
@@ -205,7 +208,7 @@ strong{color:var(--text)}
   </a>
   <ul class="nav-links">
     <li><a href="#vision">Vision</a></li>
-    <li><a href="#platform">System</a></li>
+    <li><a href="system.html">System</a></li>
     <li><a href="drivamo.html">Evaluation Platform</a></li>
     <li><a href="#evaluation">Companion App</a></li>
     <li><a href="#why">Why AAER</a></li>
@@ -487,14 +490,31 @@ strong{color:var(--text)}
   </div>
   <ul style="display:flex;gap:24px;list-style:none">
     <li><a href="#vision" style="font-size:13px;color:var(--muted);text-decoration:none">Vision</a></li>
-    <li><a href="#platform" style="font-size:13px;color:var(--muted);text-decoration:none">System</a></li>
+    <li><a href="system.html" style="font-size:13px;color:var(--muted);text-decoration:none">System</a></li>
     <li><a href="drivamo.html" style="font-size:13px;color:var(--muted);text-decoration:none">Evaluation Platform</a></li>
     <li><a href="#evaluation" style="font-size:13px;color:var(--muted);text-decoration:none">Companion App</a></li>
+    <li><a href="index.html#why" style="font-size:13px;color:var(--muted);text-decoration:none">Why AAER</a></li>
     <li><a href="contact.html" style="font-size:13px;color:var(--muted);text-decoration:none">Contact</a></li>
   </ul>
 </footer>
 
 <script>
+// Cursor follower
+const follower = document.getElementById('cursorFollower');
+const hero = document.querySelector('.hero');
+let mx = 0, my = 0, fx = 0, fy = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function animateCursor(){
+  fx += (mx - fx) * 0.12;
+  fy += (my - fy) * 0.12;
+  follower.style.left = fx + 'px';
+  follower.style.top  = fy + 'px';
+  requestAnimationFrame(animateCursor);
+})();
+hero.addEventListener('mouseenter', () => follower.classList.add('visible'));
+hero.addEventListener('mouseleave', () => follower.classList.remove('visible'));
+
+// Fuel counter
 window.addEventListener('load', function(){
   var el = document.getElementById('fuel-count');
   if(!el) return;
