@@ -28,9 +28,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:21px 5%;display:flex
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
 /* HERO */
-.hero{position:relative;width:100%;min-height:100vh;overflow:hidden;background:linear-gradient(135deg,#020820 0%,#050D47 50%,#0a1560 100%);display:flex;align-items:center;justify-content:center;text-align:center}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;z-index:0;pointer-events:none}
-.hero-glow{position:absolute;top:10%;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(6,182,212,.07) 0%,transparent 70%);z-index:0;pointer-events:none}
+.hero{position:relative;width:100%;min-height:100vh;overflow:hidden;background:linear-gradient(135deg,#06092e 0%,#0a1255 40%,#1a2a7a 100%);display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:60px 60px;z-index:0;pointer-events:none}
+.hero-glow{position:absolute;top:10%;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse,rgba(255,255,255,.09) 0%,rgba(6,182,212,.05) 40%,transparent 70%);z-index:0;pointer-events:none}
 
 /* model behind everything */
 model-viewer{
@@ -47,8 +47,8 @@ model-viewer{
 .hero-content{position:relative;z-index:2;max-width:760px;padding:120px 24px 80px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);padding:7px 16px;border-radius:100px;font-size:12px;color:#fff;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:28px}
 .hero-badge-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite}
-h1{font-family:'Montserrat',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;color:#fff;margin-bottom:16px;text-shadow:0 2px 40px rgba(2,8,32,.9)}
-h1 span{color:var(--cyan)}
+h1{font-family:'Montserrat',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;color:#fff;margin-bottom:16px;text-shadow:0 0 60px rgba(255,255,255,.25),0 2px 40px rgba(2,8,32,.9)}
+h1 span{color:#fff;text-shadow:0 0 40px rgba(255,255,255,.6)}
 .hero-sub{font-size:clamp(14px,1.8vw,18px);color:var(--muted);line-height:1.7;max-width:580px;margin:0 auto}
 
 .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.5}
@@ -146,7 +146,6 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
     <li><a href="index.html#vision">Vision</a></li>
     <li><a href="system.html" class="active" style="color:#fff">System</a></li>
     <li><a href="drivamo.html">Evaluation Platform</a></li>
-    <li><a href="index.html#evaluation">Companion App</a></li>
     <li><a href="index.html#why">Why AAER</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -163,11 +162,14 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
   <model-viewer
     id="simulator-model"
     src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/novisim.glb"
-    shadow-intensity="1.5"
+    shadow-intensity="2"
     shadow-softness="1"
-    exposure="1.8"
+    exposure="2.2"
     environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr"
     tone-mapping="neutral"
+    orientation="90deg 0deg 30deg"
+    camera-orbit="0deg 75deg 3m"
+    camera-target="0m 0m 0m"
     alt="AAER Truck Driving Simulator">
   </model-viewer>
   <div class="hero-content">
@@ -328,23 +330,33 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
     <li><a href="index.html#vision" style="font-size:13px;color:var(--muted);text-decoration:none">Vision</a></li>
     <li><a href="system.html" style="font-size:13px;color:#fff;text-decoration:none">System</a></li>
     <li><a href="drivamo.html" style="font-size:13px;color:var(--muted);text-decoration:none">Evaluation Platform</a></li>
-    <li><a href="index.html#evaluation" style="font-size:13px;color:var(--muted);text-decoration:none">Companion App</a></li>
     <li><a href="index.html#why" style="font-size:13px;color:var(--muted);text-decoration:none">Why AAER</a></li>
     <li><a href="contact.html" style="font-size:13px;color:var(--muted);text-decoration:none">Contact</a></li>
   </ul>
 </footer>
 
 <script>
-// Scroll-driven model rotation
+// Scroll-driven model animation: drift right + slow Z rotation + zoom in
 const mv = document.getElementById('simulator-model');
-let currentYaw = 0, targetYaw = 0;
+let currentH = 0, targetH = 0;
+let currentZ = 30, targetZ = 30;
+let currentDist = 3, targetDist = 3;
+
 window.addEventListener('scroll', () => {
-  const scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-  targetYaw = scrollPct * 360;
+  const p = Math.min(window.scrollY / (window.innerHeight * 0.8), 1);
+  targetH    = p * 90;           // drift camera right 0→90deg
+  targetZ    = 30 + p * 25;     // slow Z rotation 30→55deg
+  targetDist = 3 - p * 1.2;    // zoom in 3m→1.8m
 });
+
 (function animateModel(){
-  currentYaw += (targetYaw - currentYaw) * 0.05;
-  if(mv) mv.setAttribute('orientation', `0deg ${currentYaw}deg 0deg`);
+  currentH    += (targetH    - currentH)    * 0.04;
+  currentZ    += (targetZ    - currentZ)    * 0.04;
+  currentDist += (targetDist - currentDist) * 0.04;
+  if(mv){
+    mv.setAttribute('orientation',   `90deg 0deg ${currentZ}deg`);
+    mv.setAttribute('camera-orbit',  `${currentH}deg 75deg ${currentDist}m`);
+  }
   requestAnimationFrame(animateModel);
 })();
 </script>
