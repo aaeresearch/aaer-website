@@ -73,15 +73,7 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(28px,4vw,46px);font-weigh
 strong{color:var(--text)}
 
 /* VISION */
-.vision{background:linear-gradient(180deg,var(--navy) 0%,rgba(15,26,97,.4) 100%)}
 .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1200px;margin:0 auto}
-.vision-visual{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--navy2)}
-.vision-visual-inner{width:100%;height:100%;background:linear-gradient(135deg,#0F1A61 0%,#050D47 100%);display:flex;align-items:center;justify-content:center;position:relative}
-.chip-row{display:flex;flex-direction:column;gap:12px;padding:32px;position:relative;z-index:1;width:100%}
-.chip{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:12px 16px;border-radius:10px;backdrop-filter:blur(8px)}
-.chip-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.chip-text{font-size:13px;font-weight:500;color:var(--muted)}
-.chip-text strong{color:#fff}
 .pill-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
 .pill{padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px}
 .pill-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.15)}
@@ -100,31 +92,6 @@ strong{color:var(--text)}
 .card-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:20px}
 .card h3{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;margin-bottom:10px;color:#fff}
 .card p{font-size:14px;color:var(--muted);line-height:1.7}
-.icon-white{background:rgba(255,255,255,.08);color:#fff}
-.icon-green{background:rgba(51,199,89,.12);color:var(--green)}
-.icon-orange{background:rgba(255,153,26,.12);color:var(--orange)}
-.icon-cyan{background:rgba(6,182,212,.12);color:var(--cyan)}
-.icon-purple{background:rgba(168,85,247,.12);color:var(--purple)}
-.icon-gold{background:rgba(242,199,38,.12);color:var(--gold)}
-
-/* PLATFORM */
-.platform{background:var(--navy2);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
-.platform-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.platform-mockup{background:var(--navy);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:28px;position:relative;overflow:hidden}
-.mockup-header{display:flex;align-items:center;gap:8px;margin-bottom:20px}
-.mockup-dot{width:10px;height:10px;border-radius:50%}
-.mockup-bars{display:flex;flex-direction:column;gap:8px}
-.bar-row{display:flex;align-items:center;gap:10px}
-.bar-label{font-size:11px;color:var(--muted);width:60px;text-align:right}
-.bar-track{flex:1;background:rgba(255,255,255,.06);border-radius:4px;height:8px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px}
-.bar-val{font-size:11px;color:var(--text);width:36px;font-weight:600}
-.score-circle{display:flex;flex-direction:column;align-items:center;justify-content:center;width:90px;height:90px;border-radius:50%;border:3px solid #fff;margin:24px auto 0;font-family:'Montserrat',sans-serif}
-.score-num{font-size:26px;font-weight:800;color:#fff}
-.score-sub{font-size:9px;color:var(--muted);letter-spacing:1px}
-.feature-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:28px}
-.feature-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--muted);line-height:1.6}
-.feature-list li::before{content:"✦";color:var(--green);flex-shrink:0;margin-top:2px;font-size:10px}
 
 /* WHY */
 .why-grid{max-width:1200px;margin:48px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -158,7 +125,7 @@ strong{color:var(--text)}
 .gradient-line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);margin:0 5%}
 
 @media(max-width:900px){
-  .vision-grid,.platform-inner,.contact-inner,.why-grid{grid-template-columns:1fr}
+  .vision-grid,.contact-inner,.why-grid{grid-template-columns:1fr}
   .bento-grid{grid-template-columns:1fr 1fr}
   .card-wide{grid-column:span 2}
   nav .nav-links{display:none}
@@ -221,24 +188,18 @@ strong{color:var(--text)}
 <script>
 (function(){
   function runCharge(){
-    const el = document.querySelector('.hero-title-line1');
+    const el=document.querySelector('.hero-title-line1');
     if(!el) return;
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if(e.isIntersecting){
-          el.classList.remove('charged');
-          requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('charged')));
-        } else {
-          el.classList.remove('charged');
-        }
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){el.classList.remove('charged');requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('charged')))}
+        else{el.classList.remove('charged')}
       });
-    }, {threshold: 0.5});
+    },{threshold:0.5});
     observer.observe(el);
     el.classList.add('charged');
   }
-  document.readyState === 'loading'
-    ? document.addEventListener('DOMContentLoaded', runCharge)
-    : runCharge();
+  document.readyState==='loading'?document.addEventListener('DOMContentLoaded',runCharge):runCharge();
 })();
 </script>
 
@@ -282,35 +243,94 @@ strong{color:var(--text)}
 </div>
 
 <!-- VISION -->
-<section class="vision" id="vision">
+<section id="vision" style="background:#F4F6FF;position:relative;overflow:hidden;padding:96px 5%">
+
+  <div style="position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(ellipse,rgba(5,13,71,.06) 0%,transparent 70%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-80px;left:-80px;width:320px;height:320px;background:radial-gradient(ellipse,rgba(242,199,38,.08) 0%,transparent 70%);pointer-events:none"></div>
+
   <div class="vision-grid">
     <div>
-      <div class="section-label">Our Vision</div>
-      <h2>Reinventing Driver Recruitment & Training</h2>
-      <p class="body-text">At AAER, we are transforming the truck and logistics industry by revolutionizing how potential drivers are <strong>scouted</strong>, <strong>tested</strong>, <strong>trained</strong>, and <strong>upskilled</strong> for improved safety and ecological driving.</p>
-      <p class="body-text" style="margin-top:16px">Our cutting-edge <strong>SAAS/Data Science</strong> platform, supported by state-of-the-art simulators, ensures only the <strong>best-performing</strong> candidates proceed — setting a new standard for truck driver recruitment globally.</p>
+      <div class="section-label" style="color:#4A5590">Our Vision</div>
+      <h2 style="color:#050D47">Reinventing Driver Recruitment & Training</h2>
+      <p class="body-text" style="color:#4A5590">At AAER, we are transforming the truck and logistics industry by revolutionising how potential drivers are <strong style="color:#050D47">scouted</strong>, <strong style="color:#050D47">tested</strong>, <strong style="color:#050D47">trained</strong>, and <strong style="color:#050D47">upskilled</strong> for improved safety and ecological driving.</p>
+      <p class="body-text" style="margin-top:16px;color:#4A5590">Our cutting-edge <strong style="color:#050D47">SaaS / Data Science</strong> platform, supported by state-of-the-art simulators, ensures only the <strong style="color:#050D47">best-performing</strong> candidates proceed — setting a new standard for truck driver recruitment globally.</p>
       <div class="pill-tags">
-        <span class="pill pill-white">Driver Scouting</span>
-        <span class="pill pill-green">ECO Training</span>
-        <span class="pill pill-orange">Performance Scoring</span>
-        <span class="pill pill-cyan">AI Instructor</span>
-        <span class="pill pill-blue">Fleet Analytics</span>
+        <span style="padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px;background:#050D47;color:#fff">Driver Scouting</span>
+        <span style="padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px;background:rgba(51,199,89,.15);color:#1a7a36;border:1px solid rgba(51,199,89,.35)">ECO Training</span>
+        <span style="padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px;background:rgba(255,153,26,.12);color:#944d00;border:1px solid rgba(255,153,26,.3)">Performance Scoring</span>
+        <span style="padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px;background:rgba(6,182,212,.1);color:#065a6e;border:1px solid rgba(6,182,212,.3)">AI Instructor</span>
+        <span style="padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px;background:rgba(59,130,246,.1);color:#1a3f82;border:1px solid rgba(59,130,246,.25)">Fleet Analytics</span>
       </div>
     </div>
-    <div class="vision-visual">
-      <div style="position:absolute;top:10px;right:10px;z-index:10;">
-        <img src="https://github.com/aaeresearch/aaer-assets/blob/main/EU%20logo.png?raw=true" alt="EU" style="height:80px;width:auto;display:block;transform:rotate(25deg);filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));">
+
+    <div style="position:relative">
+      <div style="position:absolute;top:-12px;right:-12px;z-index:2">
+        <img src="https://github.com/aaeresearch/aaer-assets/blob/main/EU%20logo.png?raw=true" alt="EU" style="height:72px;width:auto;display:block;transform:rotate(20deg);opacity:.85">
       </div>
-      <div class="vision-visual-inner">
-        <div class="chip-row">
-          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Safe driving: <strong>100</strong></span></div>
-          <div class="chip"><div class="chip-dot" style="background:var(--orange)"></div><span class="chip-text">Speed management: <strong>89</strong></span></div>
-          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Traffic rule compliance: <strong>97</strong></span></div>
-          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Driving behavior: <strong>100</strong></span></div>
-          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Road discipline: <strong>100</strong></span></div>
-          <div class="chip"><div class="chip-dot" style="background:var(--orange)"></div><span class="chip-text">Efficiency: <strong>88</strong></span></div>
-          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Skill: <strong>98</strong></span></div>
-          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Truck handling: <strong>98</strong></span></div>
+      <div style="background:#fff;border:1px solid rgba(5,13,71,.1);border-radius:20px;overflow:hidden;box-shadow:0 4px 40px rgba(5,13,71,.08)">
+        <div style="background:#050D47;padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase">Driver Scorecard</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:17px;font-weight:800;color:#fff;margin-top:2px">Session #A2847</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px 18px">
+            <span style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:800;color:#fff;line-height:1">96</span>
+            <span style="font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase;margin-top:2px">Overall</span>
+          </div>
+        </div>
+        <div style="padding:8px 0">
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
+            <span style="font-size:13px;color:#2a3260;flex:1">Safe driving</span>
+            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:100%;height:100%;background:#33C759;border-radius:4px"></div></div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">100</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#FF991A;flex-shrink:0"></div>
+            <span style="font-size:13px;color:#2a3260;flex:1">Speed management</span>
+            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:89%;height:100%;background:#FF991A;border-radius:4px"></div></div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#944d00;width:28px;text-align:right">89</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
+            <span style="font-size:13px;color:#2a3260;flex:1">Traffic rule compliance</span>
+            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:97%;height:100%;background:#33C759;border-radius:4px"></div></div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">97</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
+            <span style="font-size:13px;color:#2a3260;flex:1">Driving behavior</span>
+            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:100%;height:100%;background:#33C759;border-radius:4px"></div></div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">100</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
+            <span style="font-size:13px;color:#2a3260;flex:1">Road discipline</span>
+            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:100%;height:100%;background:#33C759;border-radius:4px"></div></div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">100</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#FF991A;flex-shrink:0"></div>
+            <span style="font-size:13px;color:#2a3260;flex:1">Efficiency</span>
+            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:88%;height:100%;background:#FF991A;border-radius:4px"></div></div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#944d00;width:28px;text-align:right">88</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
+            <span style="font-size:13px;color:#2a3260;flex:1">Skill</span>
+            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:98%;height:100%;background:#33C759;border-radius:4px"></div></div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">98</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px">
+            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
+            <span style="font-size:13px;color:#2a3260;flex:1">Truck handling</span>
+            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:98%;height:100%;background:#33C759;border-radius:4px"></div></div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">98</span>
+          </div>
+        </div>
+        <div style="background:#F4F6FF;border-top:1px solid rgba(5,13,71,.07);padding:14px 24px;display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:12px;color:#8A96C8">AI-generated · Real-time</span>
+          <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#050D47;background:rgba(242,199,38,.25);padding:4px 12px;border-radius:100px;border:1px solid rgba(242,199,38,.5)">Drivamo</span>
         </div>
       </div>
     </div>
@@ -319,13 +339,10 @@ strong{color:var(--text)}
 
 <div class="gradient-line"></div>
 
-<!-- FEATURES BENTO -->
+<!-- SIMULATOR SECTION -->
 <section id="platform" style="background:var(--navy);position:relative;overflow:hidden">
-  <!-- full bleed image pinned to right -->
   <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/1ABABB41-7F46-4725-AB7F-668232E3D0F4_1_105_c.jpeg" alt="AAER Simulator" style="position:absolute;top:0;right:0;height:100%;width:60%;object-fit:cover;object-position:center;display:block;z-index:0">
-  <!-- gradient from left navy into transparent -->
   <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 38%,rgba(5,13,71,.7) 55%,transparent 100%);z-index:1"></div>
-
   <div class="bento" style="position:relative;z-index:2">
     <div class="section-label" style="text-align:left">Simulator Systems</div>
     <h2 style="max-width:480px">State-of-the-Art Driver Assessment Technology</h2>
@@ -381,10 +398,14 @@ strong{color:var(--text)}
       <h2>Let's Build Smarter Fleets Together</h2>
       <p class="body-text">Whether you run a staffing agency, logistics company, or are interested in partnership — we'd love to hear from you.</p>
       <ul class="contact-details">
-        <li><div class="contact-icon">📍</div>Argentinska ulica 16, Ljubljana, Slovenia</li>
-        <li><div class="contact-icon">📞</div><a href="tel:+38640298538">+386 40 298 538</a></li>
-        <li><div class="contact-icon">📞</div><a href="tel:+38640590467">+386 40 590 467</a></li>
-        <li><div class="contact-icon">✉️</div><a href="mailto:info@aaeresearch.com">info@aaeresearch.com</a></li>
+        <li>
+          <div class="contact-icon">📍</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=Argentinska+ulica+16,+Ljubljana,+Slovenia" target="_blank">Argentinska ulica 16, Ljubljana, Slovenia</a>
+        </li>
+        <li>
+          <div class="contact-icon">✉️</div>
+          <a href="mailto:info@aaeresearch.com">info@aaeresearch.com</a>
+        </li>
       </ul>
       <a href="https://www.linkedin.com/company/aaeresearch" target="_blank" class="social-link">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
@@ -441,42 +462,40 @@ strong{color:var(--text)}
 
 <script>
 // Cursor follower
-const follower = document.getElementById('cursorFollower');
-const hero = document.querySelector('.hero');
-let mx = 0, my = 0, fx = 0, fy = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+const follower=document.getElementById('cursorFollower');
+const hero=document.querySelector('.hero');
+let mx=0,my=0,fx=0,fy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 (function animateCursor(){
-  fx += (mx - fx) * 0.12;
-  fy += (my - fy) * 0.12;
-  follower.style.left = fx + 'px';
-  follower.style.top  = fy + 'px';
+  fx+=(mx-fx)*.12;fy+=(my-fy)*.12;
+  follower.style.left=fx+'px';follower.style.top=fy+'px';
   requestAnimationFrame(animateCursor);
 })();
-hero.addEventListener('mouseenter', () => follower.classList.add('visible'));
-hero.addEventListener('mouseleave', () => follower.classList.remove('visible'));
+hero.addEventListener('mouseenter',()=>follower.classList.add('visible'));
+hero.addEventListener('mouseleave',()=>follower.classList.remove('visible'));
 
 // Fuel counter
-window.addEventListener('load', function(){
-  var el = document.getElementById('fuel-count');
+window.addEventListener('load',function(){
+  var el=document.getElementById('fuel-count');
   if(!el) return;
-  var done = false;
+  var done=false;
   function runCount(){
     if(done) return;
-    done = true;
-    var s = 10, e = 27, dur = 4800, t0 = performance.now();
+    done=true;
+    var s=10,e=27,dur=4800,t0=performance.now();
     function step(now){
-      var p = Math.min((now - t0) / dur, 1);
-      var ease = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(s + (e - s) * ease);
-      if(p < 1) requestAnimationFrame(step);
+      var p=Math.min((now-t0)/dur,1);
+      var ease=1-Math.pow(1-p,3);
+      el.textContent=Math.round(s+(e-s)*ease);
+      if(p<1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }
   function check(){
-    var r = el.getBoundingClientRect();
-    if(r.top < window.innerHeight && r.bottom > 0) runCount();
+    var r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight&&r.bottom>0) runCount();
   }
-  window.addEventListener('scroll', check, {passive:true});
+  window.addEventListener('scroll',check,{passive:true});
   check();
 });
 </script>
