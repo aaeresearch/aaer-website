@@ -73,7 +73,15 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(28px,4vw,46px);font-weigh
 strong{color:var(--text)}
 
 /* VISION */
+.vision{background:linear-gradient(180deg,var(--navy) 0%,rgba(15,26,97,.4) 100%)}
 .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1200px;margin:0 auto}
+.vision-visual{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--navy2)}
+.vision-visual-inner{width:100%;height:100%;background:linear-gradient(135deg,#0F1A61 0%,#050D47 100%);display:flex;align-items:center;justify-content:center;position:relative}
+.chip-row{display:flex;flex-direction:column;gap:12px;padding:32px;position:relative;z-index:1;width:100%}
+.chip{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:12px 16px;border-radius:10px;backdrop-filter:blur(8px)}
+.chip-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.chip-text{font-size:13px;font-weight:500;color:var(--muted)}
+.chip-text strong{color:#fff}
 .pill-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
 .pill{padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px}
 .pill-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.15)}
@@ -82,16 +90,6 @@ strong{color:var(--text)}
 .pill-gold{background:rgba(242,199,38,.12);color:var(--gold);border:1px solid rgba(242,199,38,.2)}
 .pill-cyan{background:rgba(6,182,212,.15);color:var(--cyan);border:1px solid rgba(6,182,212,.25)}
 .pill-blue{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.25)}
-
-/* FEATURES BENTO */
-.bento{max-width:1200px;margin:0 auto}
-.bento-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
-.card{background:var(--navy2);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:32px;transition:transform .25s,border-color .25s}
-.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.18)}
-.card-wide{grid-column:span 2}
-.card-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:20px}
-.card h3{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;margin-bottom:10px;color:#fff}
-.card p{font-size:14px;color:var(--muted);line-height:1.7}
 
 /* WHY */
 .why-grid{max-width:1200px;margin:48px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -127,13 +125,10 @@ strong{color:var(--text)}
 @media(max-width:900px){
   .vision-grid,.contact-inner,.why-grid{grid-template-columns:1fr}
   .bento-grid{grid-template-columns:1fr 1fr}
-  .card-wide{grid-column:span 2}
   nav .nav-links{display:none}
   .cursor-follower{display:none}
 }
 @media(max-width:600px){
-  .bento-grid{grid-template-columns:1fr}
-  .card-wide{grid-column:span 1}
   .form-row{grid-template-columns:1fr}
   footer{flex-direction:column;gap:16px;text-align:center}
 }
@@ -243,94 +238,35 @@ strong{color:var(--text)}
 </div>
 
 <!-- VISION -->
-<section id="vision" style="background:#F4F6FF;position:relative;overflow:hidden;padding:96px 5%">
-
-  <div style="position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(ellipse,rgba(5,13,71,.06) 0%,transparent 70%);pointer-events:none"></div>
-  <div style="position:absolute;bottom:-80px;left:-80px;width:320px;height:320px;background:radial-gradient(ellipse,rgba(242,199,38,.08) 0%,transparent 70%);pointer-events:none"></div>
-
+<section class="vision" id="vision">
   <div class="vision-grid">
     <div>
-      <div class="section-label" style="color:#4A5590">Our Vision</div>
-      <h2 style="color:#050D47">Reinventing Driver Recruitment & Training</h2>
-      <p class="body-text" style="color:#4A5590">At AAER, we are transforming the truck and logistics industry by revolutionising how potential drivers are <strong style="color:#050D47">scouted</strong>, <strong style="color:#050D47">tested</strong>, <strong style="color:#050D47">trained</strong>, and <strong style="color:#050D47">upskilled</strong> for improved safety and ecological driving.</p>
-      <p class="body-text" style="margin-top:16px;color:#4A5590">Our cutting-edge <strong style="color:#050D47">SaaS / Data Science</strong> platform, supported by state-of-the-art simulators, ensures only the <strong style="color:#050D47">best-performing</strong> candidates proceed — setting a new standard for truck driver recruitment globally.</p>
+      <div class="section-label">Our Vision</div>
+      <h2>Reinventing Driver Recruitment & Training</h2>
+      <p class="body-text">At AAER, we are transforming the truck and logistics industry by revolutionizing how potential drivers are <strong>scouted</strong>, <strong>tested</strong>, <strong>trained</strong>, and <strong>upskilled</strong> for improved safety and ecological driving.</p>
+      <p class="body-text" style="margin-top:16px">Our cutting-edge <strong>SAAS/Data Science</strong> platform, supported by state-of-the-art simulators, ensures only the <strong>best-performing</strong> candidates proceed — setting a new standard for truck driver recruitment globally.</p>
       <div class="pill-tags">
-        <span style="padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px;background:#050D47;color:#fff">Driver Scouting</span>
-        <span style="padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px;background:rgba(51,199,89,.15);color:#1a7a36;border:1px solid rgba(51,199,89,.35)">ECO Training</span>
-        <span style="padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px;background:rgba(255,153,26,.12);color:#944d00;border:1px solid rgba(255,153,26,.3)">Performance Scoring</span>
-        <span style="padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px;background:rgba(6,182,212,.1);color:#065a6e;border:1px solid rgba(6,182,212,.3)">AI Instructor</span>
-        <span style="padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.5px;background:rgba(59,130,246,.1);color:#1a3f82;border:1px solid rgba(59,130,246,.25)">Fleet Analytics</span>
+        <span class="pill pill-white">Driver Scouting</span>
+        <span class="pill pill-green">ECO Training</span>
+        <span class="pill pill-orange">Performance Scoring</span>
+        <span class="pill pill-cyan">AI Instructor</span>
+        <span class="pill pill-blue">Fleet Analytics</span>
       </div>
     </div>
-
-    <div style="position:relative">
-      <div style="position:absolute;top:-12px;right:-12px;z-index:2">
-        <img src="https://github.com/aaeresearch/aaer-assets/blob/main/EU%20logo.png?raw=true" alt="EU" style="height:72px;width:auto;display:block;transform:rotate(20deg);opacity:.85">
+    <div class="vision-visual">
+      <div style="position:absolute;top:10px;right:10px;z-index:10;">
+        <img src="https://github.com/aaeresearch/aaer-assets/blob/main/EU%20logo.png?raw=true" alt="EU" style="height:80px;width:auto;display:block;transform:rotate(25deg);filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));">
       </div>
-      <div style="background:#fff;border:1px solid rgba(5,13,71,.1);border-radius:20px;overflow:hidden;box-shadow:0 4px 40px rgba(5,13,71,.08)">
-        <div style="background:#050D47;padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
-          <div>
-            <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase">Driver Scorecard</div>
-            <div style="font-family:'Montserrat',sans-serif;font-size:17px;font-weight:800;color:#fff;margin-top:2px">Session #A2847</div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px 18px">
-            <span style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:800;color:#fff;line-height:1">96</span>
-            <span style="font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase;margin-top:2px">Overall</span>
-          </div>
-        </div>
-        <div style="padding:8px 0">
-          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
-            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
-            <span style="font-size:13px;color:#2a3260;flex:1">Safe driving</span>
-            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:100%;height:100%;background:#33C759;border-radius:4px"></div></div>
-            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">100</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
-            <div style="width:8px;height:8px;border-radius:50%;background:#FF991A;flex-shrink:0"></div>
-            <span style="font-size:13px;color:#2a3260;flex:1">Speed management</span>
-            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:89%;height:100%;background:#FF991A;border-radius:4px"></div></div>
-            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#944d00;width:28px;text-align:right">89</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
-            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
-            <span style="font-size:13px;color:#2a3260;flex:1">Traffic rule compliance</span>
-            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:97%;height:100%;background:#33C759;border-radius:4px"></div></div>
-            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">97</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
-            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
-            <span style="font-size:13px;color:#2a3260;flex:1">Driving behavior</span>
-            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:100%;height:100%;background:#33C759;border-radius:4px"></div></div>
-            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">100</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
-            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
-            <span style="font-size:13px;color:#2a3260;flex:1">Road discipline</span>
-            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:100%;height:100%;background:#33C759;border-radius:4px"></div></div>
-            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">100</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
-            <div style="width:8px;height:8px;border-radius:50%;background:#FF991A;flex-shrink:0"></div>
-            <span style="font-size:13px;color:#2a3260;flex:1">Efficiency</span>
-            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:88%;height:100%;background:#FF991A;border-radius:4px"></div></div>
-            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#944d00;width:28px;text-align:right">88</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px;border-bottom:1px solid rgba(5,13,71,.05)">
-            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
-            <span style="font-size:13px;color:#2a3260;flex:1">Skill</span>
-            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:98%;height:100%;background:#33C759;border-radius:4px"></div></div>
-            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">98</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:11px 24px">
-            <div style="width:8px;height:8px;border-radius:50%;background:#33C759;flex-shrink:0"></div>
-            <span style="font-size:13px;color:#2a3260;flex:1">Truck handling</span>
-            <div style="width:100px;background:rgba(5,13,71,.06);border-radius:4px;height:6px;overflow:hidden"><div style="width:98%;height:100%;background:#33C759;border-radius:4px"></div></div>
-            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#1a7a36;width:28px;text-align:right">98</span>
-          </div>
-        </div>
-        <div style="background:#F4F6FF;border-top:1px solid rgba(5,13,71,.07);padding:14px 24px;display:flex;align-items:center;justify-content:space-between">
-          <span style="font-size:12px;color:#8A96C8">AI-generated · Real-time</span>
-          <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#050D47;background:rgba(242,199,38,.25);padding:4px 12px;border-radius:100px;border:1px solid rgba(242,199,38,.5)">Drivamo</span>
+      <div class="vision-visual-inner">
+        <div class="chip-row">
+          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Safe driving: <strong>100</strong></span></div>
+          <div class="chip"><div class="chip-dot" style="background:var(--orange)"></div><span class="chip-text">Speed management: <strong>89</strong></span></div>
+          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Traffic rule compliance: <strong>97</strong></span></div>
+          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Driving behavior: <strong>100</strong></span></div>
+          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Road discipline: <strong>100</strong></span></div>
+          <div class="chip"><div class="chip-dot" style="background:var(--orange)"></div><span class="chip-text">Efficiency: <strong>88</strong></span></div>
+          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Skill: <strong>98</strong></span></div>
+          <div class="chip"><div class="chip-dot" style="background:var(--green)"></div><span class="chip-text">Truck handling: <strong>98</strong></span></div>
         </div>
       </div>
     </div>
@@ -343,7 +279,7 @@ strong{color:var(--text)}
 <section id="platform" style="background:var(--navy);position:relative;overflow:hidden">
   <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/1ABABB41-7F46-4725-AB7F-668232E3D0F4_1_105_c.jpeg" alt="AAER Simulator" style="position:absolute;top:0;right:0;height:100%;width:60%;object-fit:cover;object-position:center;display:block;z-index:0">
   <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 38%,rgba(5,13,71,.7) 55%,transparent 100%);z-index:1"></div>
-  <div class="bento" style="position:relative;z-index:2">
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:2;padding:96px 0">
     <div class="section-label" style="text-align:left">Simulator Systems</div>
     <h2 style="max-width:480px">State-of-the-Art Driver Assessment Technology</h2>
     <div style="max-width:440px;margin-top:24px;display:flex;flex-direction:column;gap:20px">
@@ -461,7 +397,6 @@ strong{color:var(--text)}
 </footer>
 
 <script>
-// Cursor follower
 const follower=document.getElementById('cursorFollower');
 const hero=document.querySelector('.hero');
 let mx=0,my=0,fx=0,fy=0;
@@ -474,7 +409,6 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 hero.addEventListener('mouseenter',()=>follower.classList.add('visible'));
 hero.addEventListener('mouseleave',()=>follower.classList.remove('visible'));
 
-// Fuel counter
 window.addEventListener('load',function(){
   var el=document.getElementById('fuel-count');
   if(!el) return;
